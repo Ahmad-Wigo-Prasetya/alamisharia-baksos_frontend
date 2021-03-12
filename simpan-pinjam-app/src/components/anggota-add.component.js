@@ -10,57 +10,90 @@ class AddAnggotaComponent extends Component {
       nama: '',
       tanggal_lahir: '',
       alamat: '',
+      pekerjaan: '',
+      gaji: 0,
 
       submitted: false
     };
-    this.onChangeNama = this.onChangeNama.bind(this);
-    this.onChangeTanggalLahir = this.onChangeTanggalLahir.bind(this);
-    this.onChangeAlamat = this.onChangeAlamat.bind(this);
+
+    this.onChangeValue = this.onChangeValue.bind(this);
+    // this.onChangeNama = this.onChangeNama.bind(this);
+    // this.onChangeTanggalLahir = this.onChangeTanggalLahir.bind(this);
+    // this.onChangeAlamat = this.onChangeAlamat.bind(this);
+    // this.onChangePekerjaan = this.onChangePekerjaan.bind(this);
+    // this.onChangeGaji = this.onChangeGaji.bind(this);
     this.saveNewAnggota = this.saveNewAnggota.bind(this);
   }
 
-  onChangeNama(e) {
+  onChangeValue(e) {
     this.setState({
-      nama: e.target.value
+      [e.target.name]: e.target.value
     });
   }
 
-  onChangeTanggalLahir(e) {
-    this.setState({
-      tanggal_lahir: e.target.value
-    });
-  }
+  // onChangeNama(e) {
+  //   this.setState({
+  //     nama: e.target.value
+  //   });
+  // }
 
-  onChangeAlamat(e) {
-    this.setState({
-      alamat: e.target.value
-    });
-  }
+  // onChangeTanggalLahir(e) {
+  //   this.setState({
+  //     tanggal_lahir: e.target.value
+  //   });
+  // }
+
+  // onChangeAlamat(e) {
+  //   this.setState({
+  //     alamat: e.target.value
+  //   });
+  // }
+
+  // onChangePekerjaan(e) {
+  //   this.setState({
+  //     pekerjaan: e.target.value
+  //   });
+  // }
+
+  // onChangeGaji(e) {
+  //   this.setState({
+  //     gaji: e.target.value
+  //   });
+  // }
 
   saveNewAnggota() {
     var data = {
       nama: this.state.nama,
       tanggal_lahir: this.state.tanggal_lahir,
-      alamat: this.state.alamat
+      alamat: this.state.alamat,
+      pekerjaan: this.state.pekerjaan,
+      gaji: this.state.gaji,
     };
 
     console.log(data);
 
-    SimpanPinjamDataService.addAnggota(data)
-      .then(response => {
-        this.setState({
-          id: response.data.id,
-          nama: response.data.nama,
-          tanggal_lahir: response.data.tanggal_lahir,
-          alamat: response.data.alamat,
+    if (data.gaji < 0) {
+      alert("Gaji kurang dari 0");
+    } else {
+      SimpanPinjamDataService.addAnggota(data)
+        .then(response => {
+          this.setState({
+            id: response.data.id,
+            nama: response.data.nama,
+            tanggal_lahir: response.data.tanggal_lahir,
+            alamat: response.data.alamat,
+            pekerjaan: response.data.pekerjaan,
+            gaji: response.data.gaji,
 
-          submitted: true
+            submitted: true
+          });
+          console.log(response.data);
+        })
+        .catch(e => {
+          console.log(e);
         });
-        console.log(response.data);
-      })
-      .catch(e => {
-        console.log(e);
-      });
+    }
+
   }
 
   backToDaftarAnggota() {
@@ -72,6 +105,7 @@ class AddAnggotaComponent extends Component {
   }
 
   render() {
+    const { nama, tanggal_lahir, alamat, pekerjaan, gaji } = this.state;
     return (
       <div className="submit-form container">
         {this.state.submitted ? (
@@ -95,8 +129,8 @@ class AddAnggotaComponent extends Component {
                   className="form-control"
                   id="nama"
                   required
-                  value={this.state.nama}
-                  onChange={this.onChangeNama}
+                  value={nama}
+                  onChange={this.onChangeValue}
                   name="nama"
                 ></input>
               </div>
@@ -108,9 +142,9 @@ class AddAnggotaComponent extends Component {
                   className="form-control"
                   id="tanggal_lahir"
                   required
-                  value={this.state.tanggal_lahir}
-                  onChange={this.onChangeTanggalLahir}
-                  name="tanggal-lahir"
+                  value={tanggal_lahir}
+                  onChange={this.onChangeValue}
+                  name="tanggal_lahir"
                 ></input>
               </div>
 
@@ -121,9 +155,35 @@ class AddAnggotaComponent extends Component {
                   className="form-control"
                   id="alamat"
                   required
-                  value={this.state.alamat}
-                  onChange={this.onChangeAlamat}
+                  value={alamat}
+                  onChange={this.onChangeValue}
                   name="alamat"
+                ></input>
+              </div>
+
+              <div className="form-group">
+                <label htmlFor="pekerjaan">Pekerjaan :</label>
+                <input
+                  type="text"
+                  className="form-control"
+                  id="alamat"
+                  required
+                  value={pekerjaan}
+                  onChange={this.onChangeValue}
+                  name="pekerjaan"
+                ></input>
+              </div>
+
+              <div className="form-group">
+                <label htmlFor="gaji">Gaji :</label>
+                <input
+                  type="number"
+                  className="form-control"
+                  id="alamat"
+                  required
+                  value={gaji}
+                  onChange={this.onChangeValue}
+                  name="gaji"
                 ></input>
               </div>
 

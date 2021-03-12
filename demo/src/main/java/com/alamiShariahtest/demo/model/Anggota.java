@@ -15,7 +15,8 @@ public class Anggota implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    @Column(name = "id")
+    private Long id;
 
     @Column(name = "nama")
     private String nama;
@@ -26,6 +27,12 @@ public class Anggota implements Serializable {
     @Column(name = "alamat")
     private String alamat;
 
+    @Column(name = "pekerjaan")
+    private String pekerjaan;
+
+    @Column(name = "gaji")
+    private Integer gaji;
+
     // Foreign key
 
     // One-to-Many
@@ -34,11 +41,11 @@ public class Anggota implements Serializable {
     private List<Transaksi> transaksi;
 
     // Setter dan Getter
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -88,5 +95,21 @@ public class Anggota implements Serializable {
     }
 
     public Anggota() {
+    }
+
+    public String getPekerjaan() {
+        return pekerjaan;
+    }
+
+    public void setPekerjaan(String pekerjaan) {
+        this.pekerjaan = pekerjaan;
+    }
+
+    public Integer getGaji() {
+        return gaji;
+    }
+
+    public void setGaji(Integer gaji) {
+        this.gaji = gaji;
     }
 }

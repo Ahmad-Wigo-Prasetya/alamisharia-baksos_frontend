@@ -29,10 +29,8 @@ public class ControllerAnggota {
     @ResponseBody
     public BaseResponse<List<Anggota>> getAllAnggota() {
 
-        System.out.println("test get posgres");
         BaseResponse<List<Anggota>> response = new BaseResponse<List<Anggota>>();
         response.setStatus(200);
-        response.setMessage("Berhasil Mengambil Anggota");
         response.setResult(repositoryAnggota.findAll());
 
         if (response.getStatus() == 200) {
@@ -77,12 +75,14 @@ public class ControllerAnggota {
             newAnggota.setNama(anggota.getNama());
             newAnggota.setTanggal_lahir(anggota.getTanggal_lahir());
             newAnggota.setAlamat(anggota.getAlamat());
+            newAnggota.setPekerjaan(anggota.getPekerjaan());
+            newAnggota.setGaji(anggota.getGaji());
 
             repositoryAnggota.save(newAnggota);
 
             response.setStatus(200);
             response.setMessage("Berhasil Menambah Anggota");
-            response.setResult(anggota);
+            response.setResult(newAnggota);
         }
 
         return response;

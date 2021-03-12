@@ -59,6 +59,8 @@ class ListAnggotaComponent extends Component {
                                 <th>Nama</th>
                                 <th>Tanggal Lahir</th>
                                 <th>Alamat</th>
+                                <th>Pekerjaan</th>
+                                <th>Gaji</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
@@ -74,6 +76,8 @@ class ListAnggotaComponent extends Component {
                                         }).format(new Date(anggota.tanggal_lahir))}
                                     </td>
                                     <td>{anggota.alamat}</td>
+                                    <td>{anggota.pekerjaan}</td>
+                                    <td>{anggota.gaji}</td>
                                     <td>
                                         <button onClick={() => this.updateAnggota(anggota.id, anggota)} className="btn btn-success btn-sm">Edit</button>
                                     </td>

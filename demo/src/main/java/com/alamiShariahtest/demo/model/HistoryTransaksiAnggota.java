@@ -7,16 +7,20 @@ import javax.persistence.*;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import lombok.AllArgsConstructor;
+
 @Document(collection = "history-transaksi")
+@AllArgsConstructor
 public class HistoryTransaksiAnggota {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
+
     private String namaAnggotaBertransaksi;
     // Foreign key
 
     // One-to-Many
-    @DBRef(lazy = true)
     private List<Transaksi> transaksi;
 
     // Setter dan Getter

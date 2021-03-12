@@ -51,8 +51,8 @@ public class ControllerTransaksi {
             @RequestParam(value = "id_anggota") long idAnggota) {
         BaseResponse<Transaksi> response = new BaseResponse<Transaksi>();
 
-        System.out.println("test post");
-        System.out.println("id anggota: " + idAnggota);
+        // System.out.println("test post");
+        // System.out.println("id anggota: " + idAnggota);
         if (bindingResult.hasErrors()) {
             response.setStatus(500);
             response.setMessage("Error");
@@ -67,43 +67,45 @@ public class ControllerTransaksi {
             System.out.println("MASUK GAK? X");
             repositoryTransaksi.save(newTransaksi);
             // Add to mongoDB
-            System.out.println("MASUK GAK? Y");
-            Boolean isAnggotaExist = repositoryHistoriTransaksiAnggota.existsById(idAnggota);
-            System.out.println("MASUK GAK? Z");
-            System.out.println(isAnggotaExist);
+            // System.out.println("MASUK GAK? Y");
+            // Boolean isAnggotaExist =
+            // repositoryHistoriTransaksiAnggota.existsById(idAnggota);
+            // System.out.println("MASUK GAK? Z");
+            // System.out.println(isAnggotaExist);
 
-            if (isAnggotaExist) {
-                System.out.println("MASUK GAK? 1");
-                System.out.println(newTransaksi);
+            // if (isAnggotaExist) {
+            // System.out.println("MASUK GAK? 1");
+            // System.out.println(newTransaksi);
 
-                Optional<HistoryTransaksiAnggota> historiTransaksi = repositoryHistoriTransaksiAnggota
-                        .findById(idAnggota);
+            // Optional<HistoryTransaksiAnggota> historiTransaksi =
+            // repositoryHistoriTransaksiAnggota
+            // .findById(idAnggota);
 
-                System.out.println("MASUK GAK? 2");
-                historiTransaksi.get().getTransaksi().add(newTransaksi);
-                System.out.println("MASUK GAK? 3");
+            // System.out.println("MASUK GAK? 2");
+            // historiTransaksi.get().getTransaksi().add(newTransaksi);
+            // System.out.println("MASUK GAK? 3");
 
-                repositoryHistoriTransaksiAnggota.save(historiTransaksi.get());
+            // repositoryHistoriTransaksiAnggota.save(historiTransaksi.get());
 
-                System.out.println(historiTransaksi.get().toString());
-            } else {
-                System.out.println("MASUK GAK? 4");
+            // System.out.println(historiTransaksi.get().toString());
+            // } else {
+            // System.out.println("MASUK GAK? 4");
 
-                HistoryTransaksiAnggota historiTransaksi = new HistoryTransaksiAnggota();
-                historiTransaksi.setId(anggotaTransaksi.get().getId());
-                historiTransaksi.setNamaAnggotaBertransaksi(anggotaTransaksi.get().getNama());
-                // java.sql.date tanggal_lahir = new java.sql.date();
-                System.out.println("MASUK GAK? 5");
+            // HistoryTransaksiAnggota historiTransaksi = new HistoryTransaksiAnggota();
+            // historiTransaksi.setId(anggotaTransaksi.get().getId());
+            // historiTransaksi.setNamaAnggotaBertransaksi(anggotaTransaksi.get().getNama());
+            // System.out.println("MASUK GAK? 5");
 
-                ArrayList<Transaksi> riwayatTransaksi = new ArrayList<Transaksi>();
-                riwayatTransaksi.add(newTransaksi);
+            // ArrayList<Transaksi> riwayatTransaksi = new ArrayList<Transaksi>();
 
-                historiTransaksi.setTransaksi(riwayatTransaksi);
-                System.out.println("MASUK GAK? 6");
-                repositoryHistoriTransaksiAnggota.save(historiTransaksi);
+            // riwayatTransaksi.add(newTransaksi);
 
-                System.out.println(historiTransaksi.toString());
-            }
+            // historiTransaksi.setTransaksi(riwayatTransaksi);
+            // System.out.println("MASUK GAK? 6");
+            // repositoryHistoriTransaksiAnggota.save(historiTransaksi);
+
+            // System.out.println(historiTransaksi.toString());
+            // }
 
             response.setStatus(200);
             response.setMessage("Berhasil Menambah Transaksi");
