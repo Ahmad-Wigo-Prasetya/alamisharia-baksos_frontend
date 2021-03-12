@@ -1,0 +1,1 @@
+Component terkecil. Ex: Button, Label

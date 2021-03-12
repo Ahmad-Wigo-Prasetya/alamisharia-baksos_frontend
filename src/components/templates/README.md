@@ -1,0 +1,1 @@
+Gabungan beberapa organism
