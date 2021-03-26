@@ -20,10 +20,7 @@ instance.interceptors.request.use((config) => {
 });
 
 instance.interceptors.response.use(
-  (response) => {
-    console.log(response);
-    return response;
-  },
+  (response) => response,
   (error) => {
     const {
       response: { data },

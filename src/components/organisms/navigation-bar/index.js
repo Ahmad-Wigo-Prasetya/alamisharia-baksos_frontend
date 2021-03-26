@@ -18,19 +18,9 @@ function NavigationBar() {
       path: '/product',
     },
     {
-      label: 'Parameter',
+      label: 'Parameter Group',
       icon: <div>icon</div>,
-      path: '/parameter',
-    },
-    {
-      label: 'Parameter Value',
-      icon: <div>icon</div>,
-      path: '/parameter-value',
-    },
-    {
-      label: 'Product Parameter',
-      icon: <div>icon</div>,
-      path: '/product-parameter',
+      path: '/parameter-group',
     },
   ], []);
 

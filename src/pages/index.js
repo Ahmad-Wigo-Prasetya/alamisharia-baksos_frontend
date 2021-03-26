@@ -13,9 +13,8 @@ function Main() {
       </Route>
       <Switch>
         <Route path="/product" component={ProductList} />
-        <Route path="/parameter" component={ParameterGroupList} />
+        <Route path="/parameter-group" component={ParameterGroupList} />
         <Route path="/parameter-value" component={() => <div>Parameter Value</div>} />
-        <Route path="/product-parameter" component={() => <div>Product Parameter</div>} />
         <Route path="*" component={() => <div>not Found</div>} />
       </Switch>
     </div>
