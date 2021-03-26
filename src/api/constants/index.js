@@ -1,5 +1,19 @@
-const PEFINDO_CHECKING = '/contoh/check-pefindo';
+const GETALLPRODUCT = '/getAllProduct';
+const ADDPRODUCT = '/addProduct';
+
+const GETALLPARAMETERGROUP = '/getAllParameterGroup';
+const ADDPARAMETERGROUP = '/addParameterGroup';
+
+const GETALLPARAMETER = '/getAllParameter';
+const ADDPARAMETER = '/addParameter';
 
 export default {
-  PEFINDO_CHECKING,
+  GETALLPRODUCT,
+  ADDPRODUCT,
+
+  GETALLPARAMETERGROUP,
+  ADDPARAMETERGROUP,
+
+  GETALLPARAMETER,
+  ADDPARAMETER,
 };

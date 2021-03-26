@@ -1,10 +1,12 @@
 import React from 'react';
 import './App.css';
 import {
-  Redirect, Route, Router, Switch,
+  Redirect,
+  Route, BrowserRouter as Router, Switch,
 } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { getCookie } from 'utils/cookies';
+import Main from 'pages';
 
 const PrivateRouter = (props) => {
   // hanya bisa diakses ketika memiliki accesstoken
@@ -58,10 +60,10 @@ function App() {
   return (
     <Router>
       <Switch>
-        {/* <NonAuthRouter component={Login} exact path="/login" />
+        {/* <NonAuthRouter component={() => <div>asdas</div>} exact path="/login" />
         <NonAuthRouter component={Dashboard} exact path="/" />
-        <PrivateRouter component={Dashboard} path="/" />
-        <Route component={NotFound} path="*" /> */}
+        <PrivateRouter component={() => <div>asdsad</div>} path="/" /> */}
+        <Route component={Main} path="/" />
       </Switch>
     </Router>
   );

@@ -1,25 +1,29 @@
+/* eslint-disable no-param-reassign */
 import axios from 'axios';
 import { getCookie, removeCookie } from 'utils/cookies';
 
 const URL = process.env.REACT_APP_MAIN_URL;
-const API_VERSION = 'v1';
+// httpsconst API_VERSION = 'v1';
 const token = getCookie('_at');
 
 const instance = axios.create({
-  baseURL: `${URL}/${API_VERSION}`,
+  baseURL: `${URL}/api`,
   timeout: -1,
 });
 
 instance.interceptors.request.use((config) => {
   if (token) {
-    instance.config.headers.authorization = token;
+    config.headers.authorization = token;
   }
-  instance.config.headers['Content-Type'] = 'application/json';
+  config.headers['Content-Type'] = 'application/json';
   return config;
 });
 
 instance.interceptors.response.use(
-  (response) => response,
+  (response) => {
+    console.log(response);
+    return response;
+  },
   (error) => {
     const {
       response: { data },
