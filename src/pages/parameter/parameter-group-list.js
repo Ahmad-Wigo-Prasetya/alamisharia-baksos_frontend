@@ -159,7 +159,7 @@ function Row(props) {
       },
       onError: () => {
         window.snackBar.error(
-          'Terjadi kesalahan sistem ketika melakukan penjadwalan',
+          'Terjadi kesalahan sistem ketika melakukan penjadwalan.',
         );
       },
       onSettled: () => refetch(),

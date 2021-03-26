@@ -462,7 +462,7 @@ export default function ProductList() {
                     startIcon={<AddIcon />}
                     onClick={handleOpenModalSetupProductParameterValue(row)}
                   >
-                    Setup Parameter
+                    Setup Product Parameter Value
                   </Button>
                 </TableCell>
               </TableRow>
@@ -535,7 +535,7 @@ export default function ProductList() {
             variant="contained"
             color="primary"
             className={classes.button}
-            onClick={() => handleUpdateProduct.mutate({ id: activeRow.id, productName })}
+            onClick={() => handleUpdateProduct.mutate({ id: activeRow.id, name: productName })}
           >
             Submit
           </Button>
