@@ -122,6 +122,7 @@ function Row(props) {
       });
     }
     tempForm.sort((a, b) => a.id - b.id);
+    console.log(tempForm);
     setForm(tempForm);
     setOpenModalSetupParameterValue(true);
   };

@@ -86,7 +86,7 @@ function Row(props) {
       </TableRow>
       <TableRow>
         <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
-          <Collapse in={open} timeout="auto" unmountOnExit>
+          <Collapse in={open} timeout="auto">
             <Box margin={1}>
               <Table size="small" aria-label="parameterValue">
                 <TableHead>
@@ -97,7 +97,7 @@ function Row(props) {
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {(row.parameterValue || []).map((pv, index) => (
+                  {(row.parameterValue.sort((a, b) => a.id - b.id) || []).map((pv, index) => (
                     <TableRow key={pv.value}>
                       <TableCell component="th" scope="row">{index + 1}</TableCell>
                       <TableCell>{pv.value}</TableCell>
@@ -343,8 +343,6 @@ export default function ProductList() {
     },
   );
 
-  console.log(parameterGroupByProductIdData);
-
   const handleSetupProductParameterValue = useMutation(
     [
       urlTypes.SETUPPRODUCTPARAMETER,
@@ -369,7 +367,7 @@ export default function ProductList() {
     },
   );
 
-  const onChangeProductParameterValue = ({ target: { id, value, name } }) => {
+  const onChangeProductParameterValue = ({ target: { value, name } }) => {
     const { 1: paramaterValueId } = name.split('_');
     setForm((prev) => {
       const newValue = prev.map((p) => {
@@ -377,7 +375,7 @@ export default function ProductList() {
         if (p.parameterValue.id == paramaterValueId) {
           return {
             ...p,
-            coefficient: Number(value),
+            coefficient: value !== '' ? Number(value) : null,
           };
         }
         return p;
