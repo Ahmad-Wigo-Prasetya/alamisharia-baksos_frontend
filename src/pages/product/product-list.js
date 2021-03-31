@@ -84,7 +84,7 @@ function Row(props) {
         </TableCell>
         <TableCell style={{ width: 500 }}>{row.name}
         </TableCell>
-        <TableCell style={{ width: 20, paddingRight: 0 }}><b>Weight:</b>
+        <TableCell style={{ width: 1, paddingRight: 0 }}><b>Weight:</b>
         </TableCell>
         <TableCell style={{ width: 100, paddingLeft: 0 }}>
           <TextField
