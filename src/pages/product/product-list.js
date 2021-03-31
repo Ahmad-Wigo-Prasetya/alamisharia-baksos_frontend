@@ -71,7 +71,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function Row(props) {
-  const { row, onChangeProductParameterValue, refetch } = props;
+  const { row, onChangeProductParameterValue, onChangeProductParameterWeight, refetch } = props;
   const [open, setOpen] = useState(false);
 
   return (
@@ -82,12 +82,27 @@ function Row(props) {
             {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
           </IconButton>
         </TableCell>
-        <TableCell>{row.name}</TableCell>
+        <TableCell style={{ width: 500 }}>{row.name}
+        </TableCell>
+        <TableCell style={{ width: 20, paddingRight: 0 }}><b>Weight:</b>
+        </TableCell>
+        <TableCell style={{ width: 100, paddingLeft: 0 }}>
+          <TextField
+            style={{ width: 40 }}
+            size="small"
+            defaultValue={row.weight || 0}
+            id={row.id}
+            onChange={onChangeProductParameterWeight}
+            type="number"
+            required
+          />
+          %
+        </TableCell>
       </TableRow>
       <TableRow>
-        <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
+        <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={4}>
           <Collapse in={open} timeout="auto">
-            <Box margin={1}>
+            <Box margin={3}>
               <Table size="small" aria-label="parameterValue">
                 <TableHead>
                   <TableRow>
@@ -106,7 +121,6 @@ function Row(props) {
                           margin="dense"
                           id={pv.id}
                           size="small"
-                          name={`${row.id}_${pv.id}`}
                           variant="outlined"
                           defaultValue={pv.coefficient}
                           placeholder="Insert coefficient value"
@@ -367,8 +381,28 @@ export default function ProductList() {
     },
   );
 
-  const onChangeProductParameterValue = ({ target: { value, name } }) => {
-    const { 1: paramaterValueId } = name.split('_');
+  const onChangeProductParameterWeight = ({ target: { value, id } }) => {
+    const paramaterId = id;
+    setForm((prev) => {
+      const newValue = prev.map((p) => {
+        // eslint-disable-next-line eqeqeq
+        if (p.parameter.id == paramaterId) {
+          return {
+            ...p,
+            parameter: {
+              id: paramaterId,
+              weight: value !== '' ? Number(value) : null,
+            },
+          };
+        }
+        return p;
+      });
+      return [...newValue];
+    });
+  };
+
+  const onChangeProductParameterValue = ({ target: { value, id } }) => {
+    const paramaterValueId = id;
     setForm((prev) => {
       const newValue = prev.map((p) => {
         // eslint-disable-next-line eqeqeq
@@ -397,6 +431,7 @@ export default function ProductList() {
             coefficient: parameterValue.coefficient,
             parameter: {
               id: parameter.id,
+              weight: parameter.weight,
             },
           });
         });
@@ -561,7 +596,7 @@ export default function ProductList() {
       </Dialog>
 
       {/* Modal to setup parameter */}
-      <Dialog fullWidth maxWidth="md" open={openModalSetupProductParameterValue} onClose={handleCloseModalSetupProductParameterValue} aria-labelledby="form-dialog-title">
+      <Dialog fullScreen maxWidth="md" open={openModalSetupProductParameterValue} onClose={handleCloseModalSetupProductParameterValue} aria-labelledby="form-dialog-title">
         <DialogTitle id="form-dialog-title" style={{ backgroundColor: '#ebebeb' }}>
           Setup Parameter - {activeRow.name}
         </DialogTitle>
@@ -571,12 +606,12 @@ export default function ProductList() {
               <>
                 <TableHead>
                   <TableRow>
-                    <TableCell colSpan={2} align="center">{row.name}</TableCell>
+                    <TableCell colSpan={4} align="center">{row.name}</TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
                   {row.parameter.map((parameter, index) => (
-                    <Row key={parameter.name} row={parameter} onChangeProductParameterValue={onChangeProductParameterValue} refetch={refetch} />
+                    <Row key={parameter.name} row={parameter} onChangeProductParameterValue={onChangeProductParameterValue} onChangeProductParameterWeight={onChangeProductParameterWeight} refetch={refetch} />
                   ))}
                 </TableBody>
               </>
