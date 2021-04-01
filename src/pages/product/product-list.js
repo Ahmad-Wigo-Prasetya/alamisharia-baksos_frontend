@@ -96,7 +96,6 @@ function Row(props) {
             type="number"
             required
           />
-          %
         </TableCell>
       </TableRow>
       <TableRow>
