@@ -24,7 +24,7 @@ function Drawer({ listItem, isOpen, onClose }) {
           {
             listItem.map((item) => (
               <ListItem button key={item.path} onClick={onClick(item.path)}>
-                <ListItemIcon>{item.label === 'Product' ? <AccountBalanceIcon /> : <AssignmentIcon />}</ListItemIcon>
+                <ListItemIcon>{item.label === 'Baksos' ? <AccountBalanceIcon /> : <AssignmentIcon />}</ListItemIcon>
                 <ListItemText primary={item.label} />
               </ListItem>
             ))

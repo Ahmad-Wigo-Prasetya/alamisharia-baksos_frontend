@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import {
   AppBar, IconButton, Toolbar, Typography,
 } from '@material-ui/core';
@@ -12,14 +13,14 @@ function Header({ onDrawerMenuClick, title }) {
   return (
     <AppBar position="static">
       <Toolbar>
-        <IconButton onClick={handleClick} edge="start" color="inherit" aria-label="menu">
+        {/* <IconButton onClick={handleClick} edge="start" color="inherit" aria-label="menu">
           <Styled.MenuButtonWrapper>
             <div />
             <div />
             <div />
           </Styled.MenuButtonWrapper>
-          {/* <MenuIcon /> */}
-        </IconButton>
+          <MenuIcon />
+        </IconButton> */}
         <Typography variant="h6">
           {title}
         </Typography>

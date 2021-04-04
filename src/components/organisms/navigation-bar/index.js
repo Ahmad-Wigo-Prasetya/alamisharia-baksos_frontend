@@ -8,19 +8,9 @@ function NavigationBar() {
   const location = useLocation();
   const LIST_ITEM = useMemo(() => [
     {
-      label: 'Product',
+      label: 'Baksos',
       icon: <div>icon</div>,
       path: '/',
-    },
-    {
-      label: 'Product',
-      icon: <div>icon</div>,
-      path: '/product',
-    },
-    {
-      label: 'Parameter Group',
-      icon: <div>icon</div>,
-      path: '/parameter-group',
     },
   ], []);
 
@@ -35,7 +25,7 @@ function NavigationBar() {
         onDrawerMenuClick={drawerClick(true)}
       />
       <Drawer
-        listItem={LIST_ITEM.slice(1)}
+        listItem={LIST_ITEM.slice(0)}
         isOpen={open}
         onClose={drawerClick(false)}
       />
