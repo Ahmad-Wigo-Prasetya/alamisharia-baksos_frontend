@@ -8,7 +8,7 @@ function NavigationBar() {
   const location = useLocation();
   const LIST_ITEM = useMemo(() => [
     {
-      label: 'Baksos',
+      label: 'Catatan Keuangan Pribadi',
       icon: <div>icon</div>,
       path: '/',
     },

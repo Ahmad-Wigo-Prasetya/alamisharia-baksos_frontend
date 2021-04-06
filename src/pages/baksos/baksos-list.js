@@ -227,7 +227,7 @@ export default function BaksosList() {
               <TableCell>No.</TableCell>
               <TableCell>Tanggal</TableCell>
               <TableCell>Judul</TableCell>
-              <TableCell>Nilai</TableCell>
+              <TableCell>Jumlah (Rp)</TableCell>
               <TableCell>Action</TableCell>
             </TableRow>
           </TableHead>
@@ -243,7 +243,7 @@ export default function BaksosList() {
                   }).format(new Date(row.tanggal))}
                 </TableCell>
                 <TableCell>{row.judulPengeluaran}</TableCell>
-                <TableCell>{row.nilaiDalamRupiah}</TableCell>
+                <TableCell>Rp{row.nilaiDalamRupiah}</TableCell>
                 <TableCell>
                   <Button
                     variant="contained"
@@ -311,7 +311,7 @@ export default function BaksosList() {
             variant="outlined"
             margin="dense"
             name="nilaiDalamRupiah"
-            label="Nilai"
+            label="Jumlah (Rp)"
             onChange={onChangeValue}
             type="number"
             InputLabelProps={{
@@ -371,7 +371,7 @@ export default function BaksosList() {
             variant="outlined"
             margin="dense"
             name="nilaiDalamRupiah"
-            label="Nilai"
+            label="Jumlah (Rp)"
             defaultValue={activeRow.nilaiDalamRupiah}
             onChange={onChangeValue}
             type="number"
